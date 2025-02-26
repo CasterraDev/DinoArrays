@@ -67,7 +67,6 @@ void* _dino_insert_at(void* array, unsigned long long idx, void* valuePtr);
 
 #define dinoStride(array) _dino_field_get(array, DINOARRAY_STRIDE)
 
-#define DINO_IMPLEMENTION
 #ifdef DINO_IMPLEMENTION
 #include <stdio.h>
 #include <stdlib.h>
