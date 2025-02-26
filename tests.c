@@ -30,7 +30,6 @@ char pushPopTest(void) {
 char passToFunc2(int** arr) {
     for (int i = 100; i < 200; i++) {
         dinoPush(*arr, i);
-        printf("%llu\n", dinoMaxSize(*arr));
     }
     return 0;
 }
