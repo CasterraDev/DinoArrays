@@ -1,4 +1,8 @@
 # Dino Arrays - Dynamic Arrays
-Single header file that implements dynamic arrays
+Single header file that implements dynamic arrays and define
 
-Why are they called Dino Arrays? No clue.
+``` c
+#define DINO_IMPLEMENTION
+```
+
+Why are they called Dino Arrays and not dynamic arrays? Not even I know.
