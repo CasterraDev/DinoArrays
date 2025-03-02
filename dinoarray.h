@@ -130,6 +130,11 @@ void* _dino_insert_at(void* array, unsigned long long idx, void* valuePtr);
 #define DINO_MALLOC malloc
 #endif
 
+#ifndef DINO_FREE
+#include <stdlib.h>
+#define DINO_FREE free
+#endif
+
 
 void* _dino_create(unsigned long long length, unsigned long long stride) {
     // Like an html network header
@@ -150,7 +155,7 @@ void* _dino_create(unsigned long long length, unsigned long long stride) {
 void _dino_destroy(void* array) {
     unsigned long long* header =
         (unsigned long long*)array - DINOARRAY_FIELD_LENGTH;
-    free(header);
+    DINO_FREE(header);
 }
 
 void* _dino_resize(void* array) {
