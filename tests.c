@@ -1,6 +1,6 @@
 #include <assert.h>
 #include <stdio.h>
-#define DINO_IMPLEMENTION 
+#define DINO_IMPLEMENTATION 
 #include "dinoarray.h"
 
 #define PROJECT_NAME "dinoArray"

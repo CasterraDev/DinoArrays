@@ -6,6 +6,10 @@
  * "pointer"
  */
 
+#ifndef DINO_MALLOC
+#define DINO_MALLOC malloc
+#endif
+
 enum {
     DINOARRAY_MAX_SIZE,
     DINOARRAY_LENGTH,
@@ -44,7 +48,7 @@ void* _dino_insert_at(void* array, unsigned long long idx, void* valuePtr);
 /**
  *  Create a Dino array with a custom initial length.
  *  So if you know you need 32 elements you should do dinoCreateReserve(32,
- * [type]). This saves on having to remalloc a ton of times.
+ * [type]). This saves on having to reDINO_MALLOC a ton of times.
  */
 #define dinoCreateReserve(length, type) _dino_create(length, sizeof(type));
 
@@ -92,7 +96,7 @@ void* _dino_insert_at(void* array, unsigned long long idx, void* valuePtr);
 
 /**
  *  Clears the Dino array.
- *  Does NOT do any reallocating. So the memory will still be malloced.
+ *  Does NOT do any reallocating. So the memory will still be DINO_MALLOCed.
  */
 #define dinoClear(array) _dino_field_set(array, DINOARRAY_LENGTH, 0)
 
@@ -132,7 +136,7 @@ void* _dino_create(unsigned long long length, unsigned long long stride) {
     unsigned long long header =
         DINOARRAY_FIELD_LENGTH * sizeof(unsigned long long);
     unsigned long long mix = (length * stride) + header;
-    void* newArr = malloc(mix);
+    void* newArr = DINO_MALLOC(mix);
     // Set header info
     ((unsigned long long*)newArr)[DINOARRAY_MAX_SIZE] = length;
     ((unsigned long long*)newArr)[DINOARRAY_LENGTH] =
