@@ -6,10 +6,6 @@
  * "pointer"
  */
 
-#ifndef DINO_MALLOC
-#define DINO_MALLOC malloc
-#endif
-
 enum {
     DINOARRAY_MAX_SIZE,
     DINOARRAY_LENGTH,
@@ -127,8 +123,13 @@ void* _dino_insert_at(void* array, unsigned long long idx, void* valuePtr);
 
 #ifdef DINO_IMPLEMENTATION
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+
+#ifndef DINO_MALLOC
+#include <stdlib.h>
+#define DINO_MALLOC malloc
+#endif
+
 
 void* _dino_create(unsigned long long length, unsigned long long stride) {
     // Like an html network header
