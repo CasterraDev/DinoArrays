@@ -127,12 +127,12 @@ void* _dino_insert_at(void* array, unsigned long long idx, void* valuePtr);
 
 #ifndef DINO_MALLOC
 #include <stdlib.h>
-#define DINO_MALLOC malloc
+#define DINO_MALLOC(size) malloc(size)
 #endif
 
 #ifndef DINO_FREE
 #include <stdlib.h>
-#define DINO_FREE free
+#define DINO_FREE(block, size) free(block)
 #endif
 
 
@@ -155,7 +155,7 @@ void* _dino_create(unsigned long long length, unsigned long long stride) {
 void _dino_destroy(void* array) {
     unsigned long long* header =
         (unsigned long long*)array - DINOARRAY_FIELD_LENGTH;
-    DINO_FREE(header);
+    DINO_FREE(header, (dinoLength(array) * dinoStride(array)) + (sizeof(unsigned long long) * DINOARRAY_FIELD_LENGTH));
 }
 
 void* _dino_resize(void* array) {
